@@ -1,0 +1,19 @@
+So both results are the same (up to numerics) and it seems not to depend on the rotation axis
+
+but: only if you keep rotation_covariant to be True, else both are not longer the same. 
+
+
+If we apply a more complicated transformation (angles other than 90°, 180° etc), this is no longer true, but this migth be because it is not clear what this does (interpolation with random points is basically also random. Nonsquare shapes require to cut away stuff and/or to fill stuff with undefined values)
+
+If I follow your documentation, on page 4 of (https://arxiv.org/pdf/1805.00571.pdf) you define the transformation as convolution with the solid harmonic wavelets.
+Those Wavelets are defined on page 3 as something rotationally invariant times laplacian spherical harmonics of the direction.
+the angular dependency dissappears through the quadratic sum in the modulus operator (thanks to unsölds theorem)
+this means that the result of the wavelet scattering transformation is rotationally invariant, which means by rotating the input, we do not change the output.
+
+
+we can test this, by setting rotation_covariant to False, which changes the modulus operator to not use unsölds theorem, but to be a simple absolute value. This means, that the ouput is only rotationally invariant in one plane (as the angular dependency in the legendre polynom remains, only the angular dependency in the phase of the spherical harmonics disappears). You can see this, by setting the axes parameter in 2/main.py to (1,2) compared to (0,1) or (0,2) and you will produce a much lower difference through this script (Even though the difference is still much higher than with rotation_covariant=True) 
+
+
+
+
+
