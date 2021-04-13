@@ -1,0 +1,4 @@
+01: basically just a copy of https://www.kymat.io/codereference.html
+02: similar to 01, but with a 90° rotation
+03: comparison between 01 and 02 with explanation
+04: script to apply scattering transforms to cat scan data. The script requires cat images of naming cat_scans/*.mii
